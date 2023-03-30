@@ -1,0 +1,82 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node*left ;
+    node*right;
+    node(int data)
+    {
+        this->data=data;
+        this->left=NULL;
+        this->right=NULL;
+    }
+};
+
+node* buildtree(node* root)
+{
+int d;
+cout<<"enter the data"<<endl;
+cin>>d;
+if(d==-1)
+return NULL;
+node*temp=new node(d);
+cout<<"enter the data for left node "<<temp->data<<endl;
+temp->left=buildtree(temp->left);
+cout<<"enter the data for right node "<<temp->data<<endl;
+temp->right=buildtree(temp->right);
+return temp;
+}
+// void level(node* root)
+// {
+// queue<node*>q;
+// // cout<<root<<endl;
+// q.push(root);
+// q.push(NULL);
+// // cout<<"checcking queu is empty or nnot "<<q.empty();
+
+// // cout<<"root element is  "<<root->data<<endl;
+// while(!q.empty())
+// {
+//     node*temp=q.front();
+//     if(temp==NULL)
+//     {
+//         cout<<endl;
+//     }
+//     cout<<temp->data;
+//     q.pop();
+//     if(temp->left)
+//     {
+//         q.push(temp->left);
+//     }
+//     if(temp->right){
+//         q.push(temp->right);
+//     }
+// }
+int maxelement(node*root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    // int rootd=root->data;
+    int left=maxelement(root->left);
+    int right=maxelement(root->right);
+    int ans=max(max(left,right),root->data);
+    // int ans1=min(min(left,right),rootd);
+    // cout<<"min element idn binary tree is "<<ans1<<endl;
+    return ans;
+}
+
+int main()
+{
+node*root=NULL;
+root=buildtree(root);
+int ans1=0;
+cout<<"max elemnt in binary tree is "<<maxelement(root)<<endl;
+// cout<<"min elemennt from bt is "<<ans1;
+// int s=0;
+// level(root);
+// cout<<"sum of elemt of biary tree is "<<s;
+
+}
